@@ -1,89 +1,57 @@
 [app]
+
 # (str) Title of your application
-title = TicTacToe
+title = Tic Tac Toe
 
 # (str) Package name
-package.name = tictactoe
+package.name = Tic Tac Toe
 
-# (str) Package domain (unique to you, e.g. org.myname)
-package.domain = org.divyansh
+# (str) Package domain (needed for android/ios packaging)
+package.domain = org.Mind
 
-# (str) Source code where your main.py is located
+# (str) Source code where the main.py live
 source.dir = .
 
-# (str) Application entry point
-source.entry_point = main.py
+# (list) Source files to include (let empty to include all the files)
+source.include_exts = py,png,jpg,kv,atlas,mp4,wav
 
-# (str) Application version
-version = 1.0
+# (str) Application versioning (method 1)
+version = 0.1
 
-# (str) Supported orientation (one of landscape, portrait, all)
+# (list) Application requirements
+# comma separated e.g. requirements = sqlite3,kivy
+requirements = python3,kivy=2.0.0,https://github.com/kivymd/KivyMD/archive/master.zip,materialyoucolor,exceptiongroup,asyncgui,asynckivy,pillow
+
+# (list) Supported orientations
 orientation = portrait
 
-# (list) Permissions required by the app
-android.permissions = INTERNET
+#
+# OSX Specific
+#
 
-# (bool) Fullscreen mode
-fullscreen = 1
+# change the major version of python used by the app
+osx.python_version = 3
 
-# (list) List of requirements
-requirements = python3, kivy, https://github.com/kivymd/KivyMD/archive/refs/tags/1.1.1.zip, pillow
+# Kivy version to use
+osx.kivy_version = 2.0.0
 
-# (str) Supported architectures
-android.arch = arm64-v8a, armeabi-v7a
+#
+# Android specific
+#
 
-# (str) The NDK API version to use (use a stable version)
-android.ndk_api = 21
+# (bool) Indicate if the application should be fullscreen or not
+fullscreen = 0
 
-# (str) Android API version to target (use a stable version)
-android.api = 30
+# (str) Adaptive icon of the application (used if Android API level is 26+ at runtime)
+#icon.adaptive_foreground.filename = %(source.dir)s/data/icon_fg.png
+#icon.adaptive_background.filename = %(source.dir)s/data/icon_bg.png
 
-# (str) Package the app as a release version (disable debug tools)
-release = 0
+# (int) Target Android API, should be as high as possible.
+#android.api = 31
 
-# (bool) Copy all libs instead of stripping them
-android.copy_libs = 1
+# (int) Minimum API your APK / AAB will support.
+#android.minapi = 21
 
-# (bool) Enable debug mode
-debug = 1
-
-# (str) Bootstrap to use for build
-android.bootstrap = sdl2
-
-# (bool) Whether to include the debug symbols
-android.debug_symbols = 0
-
-# (str) Icon file
-#icon.filename = icon.png
-
-# (list) Additional Java .jar or .aar libraries to include
-android.add_jars =
-
-# (str) Path to additional gradle dependencies
-android.gradle_dependencies =
-
-# (str) Keystore information for release
-# Leave blank if testing debug builds
-android.keystore = debug.keystore
-android.keyalias = mykey
-android.keypassword = mypassword
-android.keystore_password = mypassword
-
-# (str) Package data
-# Files from this folder will be included in the APK
-package.data = data
-
-# (list) Local Java classes to include
-android.local_classes =
-
-# (str) Log level for verbose logs (debug, info, warning, error)
-log_level = 2
-
-# (bool) Automatically clean the project before building
-clean = 1
-
-# (bool) Allow custom build scripts to be included
-android.custombuild = 0
-
-# (str) Path to Android SDK (manually set this if needed)
-android.sdk_path = /path/to/android/sdk
+# (bool) Enable AndroidX support. Enable when 'android.gradle_dependencies'
+# contains an 'androidx' package, or any package from Kotlin source.
+#android.enable_androidx = True
