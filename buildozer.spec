@@ -20,19 +20,6 @@ jobs:
         python -m pip install --upgrade pip
         pip install buildozer
 
-    - name: Install Android SDK Build-Tools
-      run: |
-        # Install Android SDK command-line tools
-        sudo apt-get update
-        sudo apt-get install -y wget unzip
-        wget https://dl.google.com/android/repository/commandlinetools-linux-9333951_latest.zip
-        unzip commandlinetools-linux-9333951_latest.zip -d $HOME/.buildozer/android
-        rm commandlinetools-linux-9333951_latest.zip
-        export ANDROID_HOME=$HOME/.buildozer/android
-        export PATH=$ANDROID_HOME/cmdline-tools/tools/bin:$ANDROID_HOME/platform-tools:$PATH
-        # Install the necessary SDK components (without sdkmanager)
-        # No need for sdkmanager or license acceptance here.
-
     - name: Build with Buildozer
       run: |
         buildozer android debug
