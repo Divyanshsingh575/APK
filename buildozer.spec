@@ -19,26 +19,21 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install buildozer
-        pip install cython kivy
 
-    - name: Install Android SDK
+    - name: Install Android SDK Build-Tools
       run: |
-        export ANDROID_HOME=$HOME/.buildozer/android/platform/android-sdk
-        export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$PATH
-        mkdir -p $ANDROID_HOME
-        # Install Android SDK Command-line tools
-        wget https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip -P $HOME/.buildozer/android/
-        unzip $HOME/.buildozer/android/commandlinetools-linux-9477386_latest.zip -d $ANDROID_HOME
-        rm $HOME/.buildozer/android/commandlinetools-linux-9477386_latest.zip
-        # Accept licenses for Android SDK
-        yes | $ANDROID_HOME/cmdline-tools/bin/sdkmanager --licenses
-        # Install Android SDK platforms and build-tools
-        $ANDROID_HOME/cmdline-tools/bin/sdkmanager "platforms;android-33" "build-tools;34.0.0" "platform-tools"
+        # Install Android SDK command-line tools
+        sudo apt-get update
+        sudo apt-get install -y wget unzip
+        wget https://dl.google.com/android/repository/commandlinetools-linux-9333951_latest.zip
+        unzip commandlinetools-linux-9333951_latest.zip -d $HOME/.buildozer/android
+        rm commandlinetools-linux-9333951_latest.zip
+        export ANDROID_HOME=$HOME/.buildozer/android
+        export PATH=$ANDROID_HOME/cmdline-tools/tools/bin:$ANDROID_HOME/platform-tools:$PATH
+        # Accept licenses and install necessary components
+        yes | sdkmanager --licenses
+        sdkmanager "platforms;android-33" "build-tools;34.0.0" "platform-tools"
 
-    - name: Set up Buildozer for Android
-      run: |
-        buildozer init
-
-    - name: Build APK with Buildozer
+    - name: Build with Buildozer
       run: |
         buildozer android debug
