@@ -30,9 +30,8 @@ jobs:
         rm commandlinetools-linux-9333951_latest.zip
         export ANDROID_HOME=$HOME/.buildozer/android
         export PATH=$ANDROID_HOME/cmdline-tools/tools/bin:$ANDROID_HOME/platform-tools:$PATH
-        # Accept licenses and install necessary components
-        yes | sdkmanager --licenses
-        sdkmanager "platforms;android-33" "build-tools;34.0.0" "platform-tools"
+        # Install the necessary SDK components (without sdkmanager)
+        # No need for sdkmanager or license acceptance here.
 
     - name: Build with Buildozer
       run: |
