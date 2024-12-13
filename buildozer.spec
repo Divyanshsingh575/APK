@@ -32,11 +32,11 @@ requirements = python3, kivy, https://github.com/kivymd/KivyMD/archive/refs/tags
 # (str) Supported architectures
 android.arch = arm64-v8a, armeabi-v7a
 
-# (str) The NDK API version to use
-android.ndk_api = 23
+# (str) The NDK API version to use (use a stable version)
+android.ndk_api = 21
 
-# (str) Android API version to target
-android.api = 31
+# (str) Android API version to target (use a stable version)
+android.api = 30
 
 # (str) Package the app as a release version (disable debug tools)
 release = 0
@@ -84,3 +84,6 @@ clean = 1
 
 # (bool) Allow custom build scripts to be included
 android.custombuild = 0
+
+# (str) Path to Android SDK (manually set this if needed)
+android.sdk_path = /path/to/android/sdk
